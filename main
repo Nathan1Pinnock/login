@@ -1,0 +1,98 @@
+global username = "someusername";
+global password = "somepassword";
+
+SetVirtualMouseJavaModeOn();
+
+global font1 = LoadFontFromBitmap(LoadBitmapFromString(
+        "0006#0s8<BLRx4sF+o`-Q(47x#VG&~JzxOjl1Tsn0MG>8;`I`A)<88>;FCyH(+B~8lhq`ZJwQT" +
+        "9Q$~SFDgfVBibPLBf{uX@B3YFvY}#8EYDL&NwhDXFa}_g1GZQrnS!P<&p7I@p&EqLMDB76C=O+" +
+        "_L^rN8ZbfXf|9@#YEqgdM|sN1^a#3qwTK}84@Ot`V^<Gs&RcGD%KK}L-xySXFzbcvf-$z|@{FS" +
+        "@!XUC^2tktR?SBbWNT+5;j&l$WvdUDn+Z*t>plieeIkDSc_`#%;7WuxLFg7o(;l<y|Q#sJG4X@" +
+        "-^YoOqC{OGT!Tr6()^;ju%(5N}GAZP_8(Jj_oCL8h>P(AzLI-Pj@T#U4CuIg146GUTc<3B_>QV" +
+        "ieh1cZ_8K9()P*ooYGN5tQ|Tg#2h8v2^Gs1UTd&MWTMs#bs$s9a%WPO)WI&^%FeRAY{sQc^E*P" +
+        "M?A$d78p0-nQfuAQOh8ekl9c@7mP(o|Z`WN&OtpSo(oHQH?{|>2$mV_CPnFSQAf(ev8BJzM0+L" +
+        "ck?%*u44w|@NmL-%*SpC+zCM1S2l16GwL?NrYf+->*C=8)7HjBHpR54!Jjf|}cFqA&~?jKDbe|" +
+        "4`cpDuqlQ*4#6Rw7VoO)AnoX;zm0)E3Bk0Ol(bOC=Q=kk;n8QYaXOp%c&#@dMJg%%P+v#kTpbQ" +
+        "fiH3V@8WU>f4)AK+F|UwdUov%u8urwCr|y#FD4#fecX=Q5W%dBvXY63|Bl-kN^Mx", 0xff00ff, true), 
+"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:-", 0xff00ff);
+
+global font2 = LoadFontFromBitmap(LoadBitmapFromString(
+        "0006x0j&TILRx4sF+o`-Q(3=4LO%c%!N4ZK000Ca01yBG0MG^=-~a#s009Fu12h6pRHF>g1tkZ" +
+        "SP-RpYR8hxVUB=c^Qj;Yqqb(#*h^PsqM99RXj8ilcXoL(JMnRy=H4F)oLMn=)#v>RqM$sE@+gq" +
+        "B(v~5Pl)dfb|7}XU>qhYXOv~9FoV`()dMxwE?sED!>fQcnW)f)t8Hj*haF)EE?Y|UcWwv$DQqi" +
+        "mXrO=7X2qKj!Qv}!96sH1F_DAvZJi$z&9TUe_mjgYHi(pZaRi7jkeqM25WM$v6WA)+?1tw~lk(" +
+        "X9sCOoXDOBN*7&)L9b2rfs5GWVD$!iYb(nGD;gLl0`eNmXa`Pjf)scN=->csI?)DnPSqBNK#FK" +
+        "W)Mq8G_t{xDG3mo!z_s<7^KEaLP@a*g(7H(sgTUr%$1guXd@PB6qFc}G>K~=tYo7wv4V_522B>" +
+        "3W`r5GVG;~d8Dk{Gz*L1S%P=BZRMizJV9O+lMN2YRjA+UbQW+9Wu!$OJi5OB;Y=)TyjFCu|A~v" +
+        "IIC}lE6iAxhC3Jn>U#w4VhWXlwrOtDPcB}ye3W{nb(L9|q0sU*z|MUvJSDN7?sGb2h<N*a-%P*" +
+        "jl;l%~x_3YH5dD$Izaf{+T6X2NNV$RwhHF>5JNjKY)?C6cNQ5@@MPjBTQgQMQQ0Rg|M`LTy<q8" +
+        "&Rrev9{RS%>kIDZJ0KyY)Z{c$+Q}1RkEU+L~Pk=lu_|_BvXY63-lx-@Bjb+", 0xff00ff, true), 
+"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:", 0xff00ff);
+
+global font3 =  LoadFontFromBitmap(LoadBitmapFromString(
+    "0001Q05|{&LRx4sF+o`-Q&~)QKpX%8$iM)=000260Pq3<C#WD+)wV??7?F_BCT$uplp7NylVfP" +
+        "8ji9946m3S0vdBc*G-?nuXf$IOqKhPzB1SB+q9$NtB`DBA2q?h{l!+wGZDO^ni@744C`cwdAPx" +
+        "Wk", 0xff00ff, true), "1234567890", 0xff00ff);
+
+
+def OnLoginPage() {
+    var x = 0; var y = 0; Scrape();
+    return FindTextUsingFont(x,y,font1,"ExistingUser",0,20,0,0) || FindTextUsingFont(x,y,font1,"PLAY",0,20,0,0);
+}
+
+def Login() {
+    var x = 0; var y = 0;
+    Wait();    while ( OnLoginPage() ) {
+
+        // Click the existing user button if found
+        if (FindTextUsingFont(x,y,font1,"ExistingUser",0,20,0,0)){
+            ClickMouse ( x, y, 1 );
+            Wait();
+        }
+
+        // Click the existing user button if found
+        if (FindTextUsingFont(x,y,font1,"Login:",0,20,0,0)){
+            // Click the login prompt to focus there
+            ClickMouse ( x + 40, y, 1 );
+            Wait();
+
+            // type the username. we could add a \n to the end of this to simulate enter, however 
+            // that is dangerous. if the script misbehaves it might end up sending something in chat
+            // better to only type the username and password and leave the login action to a mouse press
+            SendKeys ( username );
+            Wait();
+           
+            if (FindTextUsingFont(x,y,font1,"Password:",0,20,0,0)){
+                // Click the password prompt to focus there
+                ClickMouse ( x + 40, y, 1 );
+                Sleep ( 200 );
+                SendKeys ( password );
+                Wait();
+
+                // now click login
+                ClickMouse ( x, y+40, 1 );
+                Wait();
+   
+            }
+
+        }
+
+        Scrape();
+        while (!FindTextUsingFont(x,y,font1,"PLAY",0,20,0,0)){
+            Wait();
+            Sleep(100);
+            Scrape();
+        }
+
+        if (FindTextUsingFont(x,y,font1,"PLAY",0,20,0,0)){
+            ClickMouse ( x, y, 1 );
+            Wait();           
+        }       
+
+        Wait();
+    }   
+
+}
+if (SetWindow("Old School") == ""){Die("Could not find runescape");}while(SelectInnerWindow("SunAwtCanvas")){}
+
+Login();
